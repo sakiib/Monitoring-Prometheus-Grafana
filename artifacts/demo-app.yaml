@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-server
+  labels:
+    app: demo-server
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: demo-server
+      labels:
+        app: demo-server
+    spec:
+      containers:
+        - name: demo-server
+          image: sakibalamin/prom:1.0.0
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: demo-server
